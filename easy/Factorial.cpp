@@ -1,23 +1,40 @@
-//Code in C++
-#include <iostream>
-#include <cmath>
+#include<iostream >
 using namespace std;
+void fact(int n)
+{
+	int arr[200]={1,0};
+	int product=0,carry=0,maxj=0;
+	if(n==1)
+	{
+	cout<<1<<endl;
+    return;
+	}
+	for(int i=2;i<=n;i++)
+	{
+		for(int j=0;j<200;j++)
+		{
+			product=arr[j]*i+carry;
+			arr[j]=product%10;
+			carry=product/10;
+			if(product>0&&j>maxj)
+			maxj=j;
+		}
+	}
+	for(int i=maxj;i>=0;i--)
+	{
+		cout<<arr[i];
+	}
+	cout<<endl;
+	
+}
 int main()
 {
-    int testcases,i,input,zeroes,c;//Declare all to be integers because we want decimals to be truncated after division.
-    cin>>testcases;
-        for(i=0;i<testcases;i++)
-    {
-        zeroes=0;
-        cin>>input;
-        c=5;
-        while((input/c)>0)//(input/c) is a non negative integer.
-        {
-            zeroes=zeroes+(input/c);
-            c=c*5; //Divide input by a higher power of 5
-        }
-        cout<<zeroes<<"\n";
-    }
-
+	int n,k;
+	cin>>n;
+	while(n--)
+	{
+		cin>>k;
+		fact(k);
+	}
+	return 0;
 }
-
